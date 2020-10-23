@@ -1,0 +1,37 @@
+body{
+  font-family: sans-serif;
+}
+
+.btns{
+   margin:3%;
+}
+.name{
+font-size: 1.5rem;
+font-weight: bold;
+padding:3%;
+}
+.para{
+  font-size: 1rem;
+}
+.profile{
+border-radius: 50%;
+width:45%;
+margin: 7% 0 0 27%;
+padding:5px;
+border:6px solid #DEDEDE;
+}
+.Abtn{
+  margin:2%;
+}
+.mainProfile{
+background: linear-gradient(to bottom, #1338BE , white 30%);
+text-align: center;
+}
+.dark{
+  background-color:  #F5F5F5;
+  font-size: 1rem;
+  font-weight: bold;
+}
+.btn2{
+  margin:1%;
+}
