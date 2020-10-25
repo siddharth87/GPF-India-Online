@@ -40,26 +40,49 @@
             <li class="breadcrumb-item"><a href="/admin/dist/index.php">Dashboard</a></li>
             <li class="breadcrumb-item active">Student Profile</li>
           </ol>
+            <?php 
+
+$servername = "localhost";
+$password = "";
+
+// Create connection
+$db = mysqli_connect($servername,'root',$password,'id14825970_gpf');
+
+$id = $_GET['id']; // get id through query string
+// $sel = mysqli_query($db,$sql);
+$del = mysqli_query($db,"SELECT * FROM Student WHERE Group_ID = '$id'");
+$get2 = mysqli_fetch_assoc($del);
+$username = $get2['Name'];   
+$bio = $get2['Accomplishment'];
+$email = $get2['Email'];
+$phone = $get2['Phone_no'];
+?>
 
           <div class="card-body">
             <div class="card-deck">
               <div class="card mainProfile">
                 <img class="profile" src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b9/Steve_Jobs_Headshot_2010-CROP.jpg/1200px-Steve_Jobs_Headshot_2010-CROP.jpg" class="card-img-top" alt="...">
                 <div class="card-body">
-                  <h5 class="card-title name">Steve Jobs</h5>
+                  <h5 class="card-title name"><?php echo $username;?></h5>
                   <p class="para">Organisation name</p>
-                  <button type="button" class="btn btn-primary Abtn">Active</button>
-                  <button type="button" class="btn btn-primary Abtn"> Student</button>
+                  <button type="button" id="toggle" class="btn btn-primary Abtn" onclick="myFunction()">Active</button>
+                  <button type="button" id="toggle1" class="btn btn-primary Abtn" onclick="myFunction1()"> Student</button>
                 </div>
               </div>
               <div class="card">
+
+                  
+              
+              
+             
+
                 <div class="card-body">
                   <p class="dark">Bio</p>
-                  <p>American business magnate, industrial designer, investor, and media proprietor</p>
+                  <p><?php echo $bio;?></p>
                   <p class="dark">Email</p>
-                  <p>stevejob123@gmaill.com</p>
+                  <p><?php echo $email;?></p>
                   <p class="dark">Mobile</p>
-                  <p>No Data Found</p>
+                  <p><?php echo $phone;?></p>
                   <p class="dark">User ID</p>
                   <p>Admin</p>
                   <p class="dark">Social Links</p>
@@ -89,7 +112,7 @@
   <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-bs4.min.js"></script>
   <script src="../assets/demo/datatables-demo.js"></script>
   <script src="../main/scripts.js"></script>
-
+<script src="index.js"></script>
 </body>
 
 </html>

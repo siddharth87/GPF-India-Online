@@ -31,6 +31,27 @@
     .btn-sm {
       margin-right: 10px !important;
     }
+    .del{
+      color:black!important;
+      text-decoration: none;
+    }
+    .del:hover{
+      color:white!important;
+      text-decoration: none;
+    }
+    .ac{
+      color:green;
+    }
+    .ac:hover{
+      color:green;
+    }
+    .ina{
+      color:red;
+    }
+    .ina:hover{
+      color:red;
+    }
+
   </style>
 </head>
 
@@ -38,6 +59,22 @@
 
   <?php include '../components/header.php' ?>
 
+  <?php
+$servername = "localhost";
+$password = "";
+
+// Create connection
+$link = mysqli_connect($servername,'root',$password,'id14825970_gpf');
+
+// Check connection
+if($link === false){
+  die("ERROR: Could not connect. " . mysqli_connect_error());
+}
+
+
+$sql = "SELECT * FROM student";
+
+?>
   <div id="layoutSidenav">
 
     <?php include '../components/sidebar.php' ?>
@@ -62,73 +99,30 @@
                   </thead>
 
                   <tbody>
-                    <tr>
-                      <td>One Snider <span class='but'><a href="/admin/dist/Student_profile" type="button" class="btn btn-outline-dark btn-sm">View Profile</a>
-                          <button type="button" class="btn btn-outline-dark btn-sm">Status</button>
-                          <button type="button" class="btn btn-outline-dark btn-sm">Delete</button></span></td>
-                    </tr>
-                    <tr>
-                      <td>Name two <span class='but'><button type="button" class="btn btn-outline-dark btn-sm">View Profile</button>
-                          <button type="button" class="btn btn-outline-dark btn-sm">Status</button>
-                          <button type="button" class="btn btn-outline-dark btn-sm">Delete</button></span></td>
-                    </tr>
-                    <tr>
-                      <td>Blank <span class='but'><a href="/admin/dist/Student_profile" type="button" class="btn btn-outline-dark btn-sm">View Profile</a>
-                          <button type="button" class="btn btn-outline-dark btn-sm">Status</button>
-                          <button type="button" class="btn btn-outline-dark btn-sm">Delete</button></span></td>
-                    </tr>
-                    <tr>
-                      <td>Donna Snider <span class='but'><a href="/admin/dist/Student_profile" type="button" class="btn btn-outline-dark btn-sm">View Profile</a>
-                          <button type="button" class="btn btn-outline-dark btn-sm">Status</button>
-                          <button type="button" class="btn btn-outline-dark btn-sm">Delete</button></span></td>
-                    </tr>
-                    <tr>
-                      <td>Donna Snider <span class='but'><a href="/admin/dist/Student_profile" type="button" class="btn btn-outline-dark btn-sm">View Profile</a>
-                          <button type="button" class="btn btn-outline-dark btn-sm">Status</button>
-                          <button type="button" class="btn btn-outline-dark btn-sm">Delete</button></span></td>
-                    </tr>
-                    <tr>
-                      <td>Donna Snider <span class='but'><a href="/admin/dist/Student_profile" type="button" class="btn btn-outline-dark btn-sm">View Profile</a>
-                          <button type="button" class="btn btn-outline-dark btn-sm">Status</button>
-                          <button type="button" class="btn btn-outline-dark btn-sm">Delete</button></span></td>
-                    </tr>
-                    <tr>
-                      <td>Donna Snider <span class='but'><a href="/admin/dist/Student_profile" type="button" class="btn btn-outline-dark btn-sm">View Profile</a>
-                          <button type="button" class="btn btn-outline-dark btn-sm">Status</button>
-                          <button type="button" class="btn btn-outline-dark btn-sm">Delete</button></span></td>
-                    </tr>
-                    <tr>
-                      <td>Donna Snider <span class='but'><a href="/admin/dist/Student_profile" type="button" class="btn btn-outline-dark btn-sm">View Profile</a>
-                          <button type="button" class="btn btn-outline-dark btn-sm">Status</button>
-                          <button type="button" class="btn btn-outline-dark btn-sm">Delete</button></span></td>
-                    </tr>
-                    <tr>
-                      <td>Donna Snider <span class='but'><a href="/admin/dist/Student_profile" type="button" class="btn btn-outline-dark btn-sm">View Profile</a>
-                          <button type="button" class="btn btn-outline-dark btn-sm">Status</button>
-                          <button type="button" class="btn btn-outline-dark btn-sm">Delete</button></span></td>
-                    </tr>
-                    <tr>
-                      <td>Donna Snider <span class='but'><a href="/admin/dist/Student_profile" type="button" class="btn btn-outline-dark btn-sm">View Profile</a>
-                          <button type="button" class="btn btn-outline-dark btn-sm">Status</button>
-                          <button type="button" class="btn btn-outline-dark btn-sm">Delete</button></span></td>
-                    </tr>
 
-                    <tr>
-                      <td>Donna Snider <span class='but'><a href="/admin/dist/Student_profile" type="button" class="btn btn-outline-dark btn-sm">View Profile</a>
-                          <button type="button" class="btn btn-outline-dark btn-sm">Status</button>
-                          <button type="button" class="btn btn-outline-dark btn-sm">Delete</button></span></td>
-                    </tr>
-                    <tr>
-                      <td>Donna Snider <span class='but'><a href="/admin/dist/Student_profile" type="button" class="btn btn-outline-dark btn-sm">View Profile</a>
-                          <button type="button" class="btn btn-outline-dark btn-sm">Status</button>
-                          <button type="button" class="btn btn-outline-dark btn-sm">Delete</button></span></td>
-                    </tr>
-
-                    <tr>
-                      <td>Donna Snider <span class='but'><a href="/admin/dist/Student_profile" type="button" class="btn btn-outline-dark btn-sm">View Profile</a>
-                          <button type="button" class="btn btn-outline-dark btn-sm">Status</button>
-                          <button type="button" class="btn btn-outline-dark btn-sm">Delete</button></span></td>
-                    </tr>
+                        <?php
+                        $result = $link->query($sql);
+                      
+                        if ($result->num_rows > 0) {
+                          // output data of each row
+                        while($row = $result->fetch_assoc()) {
+                          
+                          echo '<tr>
+                           <td>' .$row["Name"]. 
+                           '<span class="but">
+                           <a href="/admin/dist/Student_profile ?id=' .$row['Group_ID'].'" type="button" class="btn btn-outline-dark btn-sm">View Profile</a>'
+                           .($row["Status"] == 1 ? '<button type="button" class="btn btn-outline-dark btn-sm ac"> Active </button>':
+                           '<button type="button" class="btn btn-outline-dark btn-sm ina">Inactive</button>').
+                            '<button type="button" class="btn btn-outline-dark btn-sm">
+                            <a class="del" href="delete.php?id=' .$row['Group_ID'].'">Delete</a>
+                            </button></span></td>
+                            </tr>';
+                          }
+                        } else {
+                          echo "0 results";
+                        }
+                        $link->close()
+                        ?>
                   </tbody>
                 </table>
               </div>
