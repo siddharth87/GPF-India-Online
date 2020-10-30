@@ -89,7 +89,29 @@ $sql = "SELECT * FROM student";
           </ol>
           <div class="card mb-4">
             <div class="card-body">
+
+            <?php $a=0?>
+            <form id="form1" name="form1" method="get" action="index.php">
+           
+            <select name="select2[]">
+            <option value="all">all</option>
+            <option value="intern">Intern</option>
+            <option value="volunteer">Volunteer</option>
+            <option value="member">Member</option>
+            
+          </select>
+          <input type="submit" name="Submit" value="Submit"/>
+
               <!-- ////////////////////////// -->
+              <?php
+if(isset($_GET['Submit'])){              
+foreach ($_GET['select2'] as $names)
+{
+        print "You have selected $names<br/>";
+        $a=1;
+}}
+
+?>
               <div class="table-responsive">
                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                   <thead>
@@ -101,8 +123,21 @@ $sql = "SELECT * FROM student";
                   <tbody>
 
                         <?php
+                        if($a==1){
+                        if($names=='all'){
+                          $sql = "SELECT * FROM student";
                         $result = $link->query($sql);
-                      
+                        $a=0;
+                        }
+                        else{
+                          $sql = "SELECT * FROM student WHERE Fields = '$names'";
+                          $result = $link->query($sql);
+                          $a=0;
+                        }
+                      }
+                        else{
+                          $result = $link->query($sql);
+                        }
                         if ($result->num_rows > 0) {
                           // output data of each row
                         while($row = $result->fetch_assoc()) {
